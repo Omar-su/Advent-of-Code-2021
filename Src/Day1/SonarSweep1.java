@@ -8,15 +8,13 @@ public class SonarSweep1 {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        File f = new File("C:\\Users\\omars\\Downloads\\Advent-of-Code-2021\\Src\\Day1\\solar.txt");
-        int count = numberOfElem(f);
-
+        File f = new File("Src/Day1/solar.txt");
         Scanner newScanner = new Scanner(f);
 
         int pivot = newScanner.nextInt();
         int numberOfInc = 0;
 
-        numberOfInc = getNumberOfInc(count, newScanner, pivot, numberOfInc);
+        numberOfInc = getNumberOfInc(newScanner, pivot, numberOfInc);
 
         System.out.println(numberOfInc);
 
@@ -24,32 +22,16 @@ public class SonarSweep1 {
 
     }
 
-    private static int getNumberOfInc(int count, Scanner newScanner, int pivot, int numberOfInc) {
+    private static int getNumberOfInc(Scanner newScanner, int pivot, int numberOfInc) {
         while (newScanner.hasNextLine()){
             int current = newScanner.nextInt();
             if (pivot < current){
                 numberOfInc += 1;
-//                System.out.println(" INCREASE : "+ pivot + " current " + current);
-                pivot = current;
-            }else{
-                System.out.println(" decrease : "+ pivot + " current " + current);
-                pivot = current;
             }
-            count--;
+            pivot = current;
         }
         return numberOfInc;
     }
 
 
-    private static int numberOfElem(File f) throws FileNotFoundException {
-        Scanner mySc = new Scanner(f);
-        int count = 0;
-
-        while (mySc.hasNextLine()){
-            int i = mySc.nextInt();
-            count+=1;
-        }
-
-        return count;
-    }
 }

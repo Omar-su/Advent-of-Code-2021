@@ -8,48 +8,34 @@ public class SonarSweep2 {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        File f = new File("C:\\Users\\omars\\Downloads\\Advent-of-Code-2021\\Src\\Day1\\solar2.txt");
-        int count = numberOfElem(f);
-
-        Scanner newScanner = new Scanner(f);
-
-        int pivot = newScanner.nextInt();
-        int numberOfInc = 0;
-
-        numberOfInc = getNumberOfInc(count, newScanner, pivot, numberOfInc);
-
-        System.out.println(numberOfInc);
-
+        File f = new File("Src/Day1/solar2.txt");
+        int nInc = getnInc(f);
+        System.out.println(nInc);
 
 
     }
 
-    private static int getNumberOfInc(int count, Scanner newScanner, int pivot, int numberOfInc) {
-        while (newScanner.hasNextLine()){
-            int current = newScanner.nextInt();
-            if (pivot < current){
-                numberOfInc += 1;
-//                System.out.println(" INCREASE : "+ pivot + " current " + current);
-                pivot = current;
-            }else{
-                System.out.println(" decrease : "+ pivot + " current " + current);
-                pivot = current;
+    private static int getnInc(File f) throws FileNotFoundException {
+        Scanner scanner = new Scanner(f);
+        int pivot1 = scanner.nextInt();
+        int pivot2 = scanner.nextInt();
+        int pivot3 = scanner.nextInt();
+        int nInc = 0;
+
+        while (scanner.hasNextLine()){
+            int newElem = scanner.nextInt();
+
+            if ((pivot1 + pivot2 + pivot3) < (pivot2 + pivot3 + newElem)){
+                nInc++;
+
             }
-            count--;
+            pivot1 = pivot2;
+            pivot2 = pivot3;
+            pivot3 = newElem;
+
         }
-        return numberOfInc;
+        return nInc;
     }
 
 
-    private static int numberOfElem(File f) throws FileNotFoundException {
-        Scanner mySc = new Scanner(f);
-        int count = 0;
-
-        while (mySc.hasNextLine()){
-            int i = mySc.nextInt();
-            count+=1;
-        }
-
-        return count;
-    }
 }
