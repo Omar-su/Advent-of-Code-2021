@@ -8,7 +8,7 @@ public class SonarSweep2 {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        File f = new File("Src/Day1/solar2.txt");
+        File f = new File("Src/Day1/solar.txt");
         int nInc = getnInc(f);
         System.out.println(nInc);
 

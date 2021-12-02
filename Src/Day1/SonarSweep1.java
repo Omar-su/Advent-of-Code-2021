@@ -19,7 +19,6 @@ public class SonarSweep1 {
         System.out.println(numberOfInc);
 
 
-
     }
 
     private static int getNumberOfInc(Scanner newScanner, int pivot, int numberOfInc) {
