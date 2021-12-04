@@ -8,35 +8,43 @@ import java.util.Scanner;
 
 public class BinaryDiagnostic {
 
+    static File file = new File("Src/Day3/binaryinput.txt");
+
+
     public static void main(String[] args) throws FileNotFoundException {
 
-        ArrayList<char[]> charsArr = getBinaryMatrix();
+        Scanner scanner = new Scanner(file);
+
+        ArrayList<char[]> charsArr = getBinaryMatrix(scanner);
+
         StringBuilder gamma = new StringBuilder();
         StringBuilder epsilon = new StringBuilder();
 
-        for (int i = 0; i < charsArr.get(0).length; i++ ){
-            int num = getFrequency(charsArr, i);
-            checkAndSetValue(gamma, epsilon, num);
-
-        }
+        getGE(charsArr, gamma, epsilon);
 
         int gammaInt = Integer.parseInt(String.valueOf(gamma), 2);
         int epsilonInt = Integer.parseInt(String.valueOf(epsilon), 2);
 
-        System.out.println(gammaInt);
-        System.out.println(epsilonInt);
         System.out.println(gammaInt * epsilonInt);
 
 
     }
 
+    public static void getGE(ArrayList<char[]> charsArr, StringBuilder gamma, StringBuilder epsilon) {
+        for (int i = 0; i < charsArr.get(0).length; i++ ){
+            int num = getFrequency(charsArr, i);
+            checkAndSetValue(gamma, epsilon, num);
+
+        }
+    }
+
     private static void checkAndSetValue(StringBuilder gamma, StringBuilder epsilon, int num) {
-        if (num > 0){
+        if (num >= 0){
             gamma.append("1");
             epsilon.append("0");
         }else {
-            gamma.append("0");
             epsilon.append("1");
+            gamma.append("0");
         }
     }
 
@@ -53,10 +61,7 @@ public class BinaryDiagnostic {
         return num;
     }
 
-    private static ArrayList<char[]> getBinaryMatrix() throws FileNotFoundException {
-        File file = new File("Src/Day3/binaryinput.txt");
-
-        Scanner scanner = new Scanner(file);
+    public static ArrayList<char[]> getBinaryMatrix(Scanner scanner)  {
 
         ArrayList<char []> charsArr = new ArrayList<>();
 
